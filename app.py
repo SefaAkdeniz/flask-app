@@ -28,11 +28,13 @@ def index(Pclass,Sex,Age,SibSp,Parch,Fare,Embarked):
         elif Embarked == "S":
             array=pd.DataFrame([[Pclass,Sex,Age,SibSp,Parch,Fare,0,0,1]])
             
-        array = scaler.transform(array)                  
-        return jsonify(str(model.predict(array)[0]))
+        array = scaler.transform(array)    
+        print(model.predict(array)[0])    
+        print(type(model.predict(array)[0]))          
+        return jsonify(result=str(model.predict(array)[0]))
     
     except:
-        return jsonify(str("Hata"))
+        return jsonify(result=str("error"))
            
 if __name__ == '__main__':
     app.run(port=5000,debug=True)
